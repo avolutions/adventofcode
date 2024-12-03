@@ -9,13 +9,21 @@ const reports = content
   .map(line => line.split(" ").map(Number));
 
 let safeReports = 0;
+let safeWithToleranceReports = 0;
+
 for (const report of reports) {
   if (isSafe(report)) {
     safeReports++;
+    safeWithToleranceReports++;
+  } else {
+    if (isSafeWithTolerance(report)) {
+      safeWithToleranceReports++;
+    }
   }
 }
 
 console.log('Part 1: ' + safeReports);
+console.log('Part 2: ' + safeWithToleranceReports);
 
 function isSafe(array: number[]): boolean {
   let increasing = true;
@@ -42,4 +50,18 @@ function isSafe(array: number[]): boolean {
   }
 
   return true; // It's safe
+}
+
+function isSafeWithTolerance(report: number[]): boolean {
+  for (let i = 0; i < report.length; i++) {
+    // Create a new array with the i-th element removed
+    const modifiedReport = [...report.slice(0, i), ...report.slice(i + 1)];
+
+    // Check if the modified report is safe
+    if (isSafe(modifiedReport)) {
+      return true;
+    }
+  }
+
+  return false; // No valid combination found
 }
