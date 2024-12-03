@@ -1,12 +1,9 @@
 import * as fs from "fs";
 import * as path from "path";
-import inquirer from 'inquirer';
-import chalk from "chalk";
 import { exec } from "child_process";
-import { fileURLToPath } from "url";
+import inquirer from "inquirer";
 
-const __filename = fileURLToPath(import.meta.url); // Current file path
-const __dirname = path.dirname(__filename);       // Current directory
+const chalk = require("chalk");
 
 const distDir = path.resolve(__dirname); // Use __dirname as usual
 

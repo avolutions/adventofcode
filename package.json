@@ -2,7 +2,7 @@
   "name": "adventofcode",
   "version": "1.0.0",
   "description": "Advent of Code 2024 solutions written in TypeScript.",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "build": "tsc",
     "advent": "node dist/index.js"
