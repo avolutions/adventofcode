@@ -9,7 +9,7 @@ My solutions for [Advent of Code 2024](https://adventofcode.com/) written in Typ
    > npm install
 3. Build:
    > npm run build
-   
+
 # Usage
 The solutions to the puzzles for each day can be selected and executed separately.
 
@@ -34,3 +34,4 @@ After executing the solution, either by selecting it from the list or by calling
 # Solutions
 Day | Command | Part 1 | Part 2
 --- | --- | --- | ---
+[Day 1: Historian Hysteria](https://adventofcode.com/2024/day/1) | `npm run advent 1` | [57fb22f](https://github.com/avolutions/adventofcode/commit/57fb22ff139de656c4bbea2c93026f88a4732ad2) | [f51986c](https://github.com/avolutions/adventofcode/commit/f51986c200f3ee12aaa65e7487fe87a1291f4635)
