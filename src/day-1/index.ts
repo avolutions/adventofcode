@@ -29,3 +29,16 @@ const distance = leftValues.reduce((sum, left, index) => {
 }, 0);
 
 console.log("Part 1: " + distance);
+
+// Calculate similarity score
+let similarityScore = 0;
+
+for (const leftValue of leftValues) {
+  // Count how many times the left value appears in right list
+  const appearanceInRight = rightValues.filter(rightValue => rightValue === leftValue).length;
+
+  // Calculate similarity score
+  similarityScore += (leftValue * appearanceInRight);
+}
+
+console.log("Part 2: " + similarityScore);
