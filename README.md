@@ -22,6 +22,8 @@ To get a list of all available puzzle solutions, execute the following command:
 
 This will show you a list from which you can select a day using the arrow keys:
 
+![image](https://github.com/user-attachments/assets/132415be-d68e-4a77-8e8a-fe81b2e136b9)
+
 ## Run directly
 To execute a solution directly, use the following command:
 > npm run advent &lt;day&gt;
@@ -29,7 +31,9 @@ To execute a solution directly, use the following command:
 Where `<day>` needs to be a valid and existing day, see [Solutions](#solutions)
 
 ## Results
-After executing the solution, either by selecting it from the list or by calling it directly, the results for all parts of the day are displayed in the console:
+After executing the solution, either by selecting it from the list or by calling it directly, the results for all parts of the puzzle are displayed in the console:
+
+![image](https://github.com/user-attachments/assets/dbb97e2a-4091-40f5-96ee-e79e1f3ae515)
 
 # Solutions
 Day | Command | Part 1 | Part 2
