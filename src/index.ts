@@ -18,12 +18,17 @@ async function listDays(): Promise<string> {
     process.exit(1);
   }
 
+  const choices = days.map(day => ({
+    name: `Day ${day.split("-")[1]}`, // Display as "Day N"
+    value: day, // Pass the original directory name
+  }));
+
   const { selectedDay } = await inquirer.prompt([
     {
       type: "list",
       name: "selectedDay",
       message: "Select a day to execute:",
-      choices: days,
+      choices
     },
   ]);
 
@@ -31,13 +36,14 @@ async function listDays(): Promise<string> {
 }
 
 function runDay(day: string) {
+  const dayAsNumber = parseInt(day.split("-")[1], 10);
   const dayPath = path.join(distDir, day, "index.js");
   if (!fs.existsSync(dayPath)) {
-    console.log(chalk.red(`Day script not found: ${dayPath}`));
+    console.log(chalk.red(`No solution for day ${dayAsNumber} found!`));
     process.exit(1);
   }
 
-  console.log(chalk.green(`Executing ${dayPath}...\n`));
+  console.log(chalk.green(`Executing solution for day ${dayAsNumber}...\nResults:\n`));
   exec(`node ${dayPath}`, (error, stdout, stderr) => {
     if (error) {
       console.error(chalk.red(`Error: ${error.message}`));
