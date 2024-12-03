@@ -35,3 +35,4 @@ After executing the solution, either by selecting it from the list or by calling
 Day | Command | Part 1 | Part 2
 --- | --- | --- | ---
 [Day 1: Historian Hysteria](https://adventofcode.com/2024/day/1) | `npm run advent 1` | [57fb22f](https://github.com/avolutions/adventofcode/commit/57fb22ff139de656c4bbea2c93026f88a4732ad2) | [f51986c](https://github.com/avolutions/adventofcode/commit/f51986c200f3ee12aaa65e7487fe87a1291f4635)
+[Day 2: Red-Nosed Reports](https://adventofcode.com/2024/day/2) | `npm run advent 2` | [7932831](https://github.com/avolutions/adventofcode/commit/7932831f5d8d6c38cc4ec35b1948e51718505958) | [bb32ac1](https://github.com/avolutions/adventofcode/commit/bb32ac1346ca7488d5360a0128bca20cd2fa41c4)
