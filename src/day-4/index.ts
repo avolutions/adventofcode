@@ -3,7 +3,8 @@ import { readFileFromCurrentDirectory } from '../utils/readFile.js';
 const content = readFileFromCurrentDirectory();
 
 const searchTerm = 'XMAS';
-let count = 0;
+let countPart1 = 0;
+let countPart2 = 0;
 
 // Steps while searching in a direction: [row, col]
 const searchDirections: { [key: string]: number[] } = {
@@ -28,12 +29,19 @@ for (let row = 0; row < grid.length; row++) {
   for (let col = 0; col < grid[row].length; col++) {
     // If current letter is first letter of search term, in our case 'X'
     if (grid[row][col] === searchTerm[0]) {
-      count += (searchInAllDirections(col, row));
+      countPart1 += countInAllDirections(row, col);
+    }
+
+    // If current letter is 'A' we check for X pattern
+    if (grid[row][col] === 'A') {
+      if (checkPattern(row, col)) {
+        countPart2++;
+      }
     }
   }
 }
 
-function searchInAllDirections(col: number, row: number): number {
+function countInAllDirections(row: number, col: number): number {
   let termsFound = 0;
 
   // Search in all directions
@@ -63,4 +71,34 @@ function searchInAllDirections(col: number, row: number): number {
   return termsFound;
 }
 
-console.log('Part 1: ' + count);
+function checkPattern(row: number, col: number): boolean {
+  const searchTerms = ['MAS', 'SAM'];
+  const center = grid[row][col];
+
+  const topleft = grid[row - 1]?.[col - 1];
+  const bottomright = grid[row + 1]?.[col + 1];
+
+  const topright = grid[row - 1]?.[col + 1];
+  const bottomleft = grid[row + 1]?.[col - 1];
+
+  const diagonal1 = [
+    topleft,
+    center,
+    bottomright
+  ].join('');
+
+  const diagonal2 = [
+    topright,
+    center,
+    bottomleft
+  ].join('');
+
+  if (searchTerms.includes(diagonal1) && searchTerms.includes(diagonal2)) {
+    return true;
+  }
+
+  return false;
+}
+
+console.log('Part 1: ' + countPart1);
+console.log('Part 2: ' + countPart2);
