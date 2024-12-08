@@ -24,10 +24,11 @@ const updates = rawUpdates
     .map(Number)
   );
 
-let count = 0;
+let countPart1 = 0;
+let countPart2 = 0;
 
 // Check each update
-for (const update of updates) {
+for (let update of updates) {
 
   // Find all rules that applies for this update
   const appliedRules = rules
@@ -37,13 +38,37 @@ for (const update of updates) {
   const notFulfilledRules = appliedRules
     .filter(rule => update.indexOf(rule[0]) > update.indexOf(rule[1]));
 
-
   if (notFulfilledRules.length === 0) {
     // Get middle element from update array
-    const middleNumber = update[(Math.floor(update.length / 2))];
+    countPart1 += getMiddleItem(update);
+  } else {
+    // TODO: order update
+    update = reorder(update, notFulfilledRules);
 
-    count += middleNumber
+    countPart2 += getMiddleItem(update);
   }
 }
 
-console.log('Part 1: ' + count);
+function reorder(items: number[], rules: number[][]): number[] {
+  return items.sort((a, b) => {
+    // Check if there is a rule that requires "a" before "b"
+    if (rules.some(([first, second]) => first === a && second === b)) {
+      return -1; // "a" before "b"
+    }
+
+    // Check if there is a rule that requires "b" before "a"
+    if (rules.some(([first, second]) => first === b && second === a)) {
+      return 1; // "b" before "a"
+    }
+
+    // No rule applies -> original order
+    return 0;
+  });
+}
+
+function getMiddleItem(items: number[]): number {
+  return items[(Math.floor(items.length / 2))];
+}
+
+console.log('Part 1: ' + countPart1);
+console.log('Part 2: ' + countPart2);
