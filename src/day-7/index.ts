@@ -36,10 +36,14 @@ for (let i = 0; i < results.length; i++) {
 
     // Calculate all values with the given operator
     for (let k = 0; k < operators[j].length; k++) {
+      const number = numbers[k + 1];
+
       if (operators[j][k] === '+') {
-        result += numbers[k + 1];
+        result += number;
       } else if (operators[j][k] === '*') {
-        result *= numbers[k + 1];
+        result *= number;
+      } else if (operators[j][k] === '||') {
+        result = Number(`${result}${number}`)
       }
     }
 
@@ -59,14 +63,20 @@ function getOperatorCombinations(n: number): string[][] {
   }
 
   const result: string[][] = [];
-  const totalCombinations = 1 << n; // 2^n combinations
+  const values = ['*', '+', '||']; // The possible values
+  const possibleValues = values.length;
+  const totalCombinations = Math.pow(possibleValues, n); // x^n combinations where x is count of possible values
 
   for (let i = 0; i < totalCombinations; i++) {
-      const combination: string[] = [];
-      for (let bit = 0; bit < n; bit++) {
-          combination.push((i >> bit) & 1 ? '+' : '*'); // Map 1 to '+' and 0 to '*'
-      }
-      result.push(combination);
+    const combination: string[] = [];
+    let current = i;
+
+    for (let j = 0; j < n; j++) {
+      combination.push(values[current % possibleValues]); // Get the current value
+      current = Math.floor(current / possibleValues); // Move to the next digit
+    }
+
+    result.push(combination);
   }
 
   // Store the result in the cache before returning
